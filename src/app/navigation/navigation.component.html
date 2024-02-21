@@ -3,58 +3,51 @@
     class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
   >
     <a
-      href="https://flowbite.com"
       class="flex items-center space-x-3 rtl:space-x-reverse"
+      href="https://flowbite.com"
     >
       <img
-        src="https://flowbite.com/docs/images/logo.svg"
-        class="h-8"
         alt="Flowbite Logo"
+        class="h-8"
+        src="https://flowbite.com/docs/images/logo.svg"
       />
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
         >Loopers Nest</span
       >
     </a>
-    <div class="flex items-center space-x-6 rtl:space-x-reverse">
-      <a
-        href="tel:5541251234"
-        class="text-sm text-gray-500 dark:text-white hover:underline"
-        >(555) 412-1234</a
-      >
-      <button
-              *ngIf="isAuthenticated()"
-        (click)="handleLogin()"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-      >
-        <span
-          class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
-        >
-          TESTING
-        </span>
-      </button>
-        <button
-                (click)="handleLogin()"
-                class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-        >
-        <span
-                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
-        >
-          Login
-        </span>
-        </button>
-      <button
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
-      >
-        <span
-                (click)="handleSignup()"
-          class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
-        >
-          Sign Up
-        </span>
-      </button>
+<!--      <div *ngIf="isAuthenticated(); else LoggedOut">-->
+<!--      </div>-->
+      <ng-container *ngIf="user$ | async as user; else LoggedOut">
+          <div class="profile-grid">
+              <div class="profile__header">
+                  <img [src]="user.picture" alt="Profile" class="profile__avatar" />
+                  <div class="profile__headline">
+                      <h2 class="profile__title">{{user.nickname}}</h2>
+                      <span class="profile__description">{{ user.email }}</span>
+                  </div>
+              </div>
+          </div>
+          <app-logout-button></app-logout-button>
+      </ng-container>
+      <ng-container *ngIf="code$ | async as code">
+          <div class="profile__details">
+              {{ code }}
+          </div>
+      </ng-container>
+      <ng-template #LoggedOut>
+          <div class="flex items-center space-x-6 rtl:space-x-reverse">
+              <app-login-button></app-login-button>
+              <app-sign-up-button></app-sign-up-button>
+          </div>
+      </ng-template>
     </div>
-  </div>
+<!--    <div *ngIf="isAdmin()">-->
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" routerLink="/admin">Admin</a>-->
+<!--    </li>-->
+<!--    </div>-->
+
 </nav>
 <nav class="bg-gray-50 dark:bg-gray-700">
   <div class="max-w-screen-xl px-4 py-3 mx-auto">
@@ -64,65 +57,65 @@
       >
         <li>
           <a
+            [routerLinkActiveOptions]="{ exact: true }"
+            aria-current="page"
+            class="text-gray-900 dark:text-white hover:underline"
             routerLink="/"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-gray-900 dark:text-white hover:underline"
-            aria-current="page"
             >Home</a
           >
         </li>
         <!-- Review Dropdown -->
         <li>
           <button
-            id="dropdownReviewLink"
-            data-dropdown-toggle="dropdownReviewMenu"
             class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+            data-dropdown-toggle="dropdownReviewMenu"
+            id="dropdownReviewLink"
           >
             Reviews
             <svg
-              class="w-2.5 h-2.5 ms-2.5"
               aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
+              class="w-2.5 h-2.5 ms-2.5"
               fill="none"
               viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                d="m1 1 4 4 4-4"
                 stroke="currentColor"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="m1 1 4 4 4-4"
               />
             </svg>
           </button>
           <!-- Dropdown menu -->
           <div
-            id="dropdownReviewMenu"
             class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+            id="dropdownReviewMenu"
           >
             <ul
-              class="py-2 text-sm text-gray-700 dark:text-gray-400"
               aria-labelledby="dropdownLargeButton"
+              class="py-2 text-sm text-gray-700 dark:text-gray-400"
             >
               <li>
                 <a
-                  href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  href="#"
                   >Dashboard</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  href="#"
                   >Settings</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  href="#"
                   >Earnings</a
                 >
               </li>
@@ -132,54 +125,54 @@
         <!-- Walkthrough Dropdown -->
         <li>
           <button
-            id="dropdownWalkthroughLink"
-            data-dropdown-toggle="dropdownWalkthroughMenu"
             class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+            data-dropdown-toggle="dropdownWalkthroughMenu"
+            id="dropdownWalkthroughLink"
           >
             Walkthroughs
             <svg
-              class="w-2.5 h-2.5 ms-2.5"
               aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
+              class="w-2.5 h-2.5 ms-2.5"
               fill="none"
               viewBox="0 0 10 6"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                d="m1 1 4 4 4-4"
                 stroke="currentColor"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="m1 1 4 4 4-4"
               />
             </svg>
           </button>
           <!-- Dropdown menu -->
           <div
-            id="dropdownWalkthroughMenu"
             class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+            id="dropdownWalkthroughMenu"
           >
             <ul
-              class="py-2 text-sm text-gray-700 dark:text-gray-400"
               aria-labelledby="dropdownLargeButton"
+              class="py-2 text-sm text-gray-700 dark:text-gray-400"
             >
               <li>
                 <a
-                  href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  href="#"
                   >Dashboard</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  href="#"
                   >Settings</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  href="#"
                   >Earnings</a
                 >
               </li>
