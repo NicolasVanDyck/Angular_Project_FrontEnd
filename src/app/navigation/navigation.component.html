@@ -19,6 +19,7 @@
     </a>
       <div *ngIf="isAuthenticated(); else LoggedOut">
           <app-logout-button></app-logout-button>
+          <app-user-info></app-user-info>
       </div>
       <ng-template #LoggedOut>
           <div class="flex items-center space-x-6 rtl:space-x-reverse">

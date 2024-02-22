@@ -6,6 +6,7 @@ import { SignUpButtonComponent } from '../sign-up-button/sign-up-button.componen
 import { LoginButtonComponent } from '../login-button/login-button.component';
 import { LogoutButtonComponent } from '../logout-button/logout-button.component';
 import { RoleService } from '../role.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-navigation',
@@ -16,6 +17,7 @@ import { RoleService } from '../role.service';
     SignUpButtonComponent,
     LoginButtonComponent,
     LogoutButtonComponent,
+    UserInfoComponent,
   ],
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
