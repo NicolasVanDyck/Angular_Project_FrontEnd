@@ -1,4 +1,4 @@
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
+<nav class="bg-white border-gray-200 dark:bg-gray-900" xmlns="http://www.w3.org/1999/html">
   <div
     class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
   >
@@ -6,35 +6,20 @@
       class="flex items-center space-x-3 rtl:space-x-reverse"
       href="https://flowbite.com"
     >
-      <img
-        alt="Flowbite Logo"
-        class="h-8"
-        src="https://flowbite.com/docs/images/logo.svg"
-      />
+
+<!--      <img-->
+<!--        alt="Flowbite Logo"-->
+<!--        class="h-8"-->
+<!--        src="https://flowbite.com/docs/images/logo.svg"-->
+<!--      />-->
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
         >Loopers Nest</span
       >
     </a>
-<!--      <div *ngIf="isAuthenticated(); else LoggedOut">-->
-<!--      </div>-->
-      <ng-container *ngIf="user$ | async as user; else LoggedOut">
-          <div class="profile-grid">
-              <div class="profile__header">
-                  <img [src]="user.picture" alt="Profile" class="profile__avatar" />
-                  <div class="profile__headline">
-                      <h2 class="profile__title">{{user.nickname}}</h2>
-                      <span class="profile__description">{{ user.email }}</span>
-                  </div>
-              </div>
-          </div>
+      <div *ngIf="isAuthenticated(); else LoggedOut">
           <app-logout-button></app-logout-button>
-      </ng-container>
-      <ng-container *ngIf="code$ | async as code">
-          <div class="profile__details">
-              {{ code }}
-          </div>
-      </ng-container>
+      </div>
       <ng-template #LoggedOut>
           <div class="flex items-center space-x-6 rtl:space-x-reverse">
               <app-login-button></app-login-button>
@@ -42,11 +27,11 @@
           </div>
       </ng-template>
     </div>
-<!--    <div *ngIf="isAdmin()">-->
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link" routerLink="/admin">Admin</a>-->
-<!--    </li>-->
-<!--    </div>-->
+    <div *ngIf="isAdmin()">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin">Admin</a>
+    </li>
+    </div>
 
 </nav>
 <nav class="bg-gray-50 dark:bg-gray-700">

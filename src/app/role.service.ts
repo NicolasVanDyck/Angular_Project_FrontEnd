@@ -18,7 +18,6 @@ export class RoleService {
         const decodedToken = jose.decodeJwt(token) as {
           permissions: string[];
         } | null;
-
         // Check for permissions from the decoded token
         if (
           decodedToken &&
