@@ -7,6 +7,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ContentListComponent } from './content/content-list/content-list.component';
+import { ContentFormComponent } from './forms/content-form/content-form.component';
 
 @NgModule({
   declarations: [AppComponent],

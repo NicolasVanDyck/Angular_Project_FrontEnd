@@ -5,6 +5,8 @@ import { ReviewComponent } from './review/review.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { AdminComponent } from './admin/admin.component';
 import { adminGuard } from './admin.guard';
+import { ContentListComponent } from './content/content-list/content-list.component';
+import { ContentFormComponent } from './forms/content-form/content-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AuthGuard, adminGuard],
   },
+  { path: 'admin/content', component: ContentListComponent },
+  { path: 'admin/content/form', component: ContentFormComponent },
 ];
 
 @NgModule({
