@@ -22,7 +22,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     id: 0,
     body: '',
     score: 0,
-    gamePlatformId: 0,
+    gameId: 0,
     varietyId: 0,
     userId: 0,
     createdAt: new Date(),
@@ -43,6 +43,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
     this.isEdit =
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
+    // plus sign converts string to number
     this.contentId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
 
     if (!this.isAdd && !this.isEdit) {
@@ -66,10 +67,12 @@ export class ContentFormComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.isSubmitted = true;
+    this.content.createdAt = new Date(); // Set the createdAt field to the current date and time
     if (this.isAdd) {
       this.postContent$ = this.contentService
         .postContent(this.content)
         .subscribe({
+          // next is the success callback, error is the error callback
           next: (v) => this.router.navigateByUrl('/admin/content'),
           error: (e) => (this.errorMessage = e.message),
         });
@@ -83,4 +86,6 @@ export class ContentFormComponent implements OnInit, OnDestroy {
         });
     }
   }
+
+  protected readonly Date = Date;
 }

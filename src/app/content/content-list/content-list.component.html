@@ -19,7 +19,22 @@
                         #</th>
                     <th
                             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+                        Body</th>
+                    <th
+                            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
                         Score</th>
+                    <th
+                            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+                        GameId</th>
+                    <th
+                            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+                        VarietyId</th>
+                    <th
+                            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+                        UserId</th>
+                    <th
+                            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+                        CreatedAt</th>
                     <th class="px-6 py-3 text-xs text-center text-gray-500 border-b border-gray-200 bg-gray-50">
                         &nbsp;</th>
                 </tr>
@@ -33,9 +48,29 @@
                         </div>
 
                     </td>
+                    <td class="px-6 py-4 border-b border-gray-200">
+                        <div class="text-sm text-gray-900">{{content.body}}
+                        </div>
+                    </td>
 
                     <td class="px-6 py-4 border-b border-gray-200">
                         <div class="text-sm text-gray-900">{{content.score}}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 border-b border-gray-200">
+                        <div class="text-sm text-gray-900">{{content.gameId}}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 border-b border-gray-200">
+                        <div class="text-sm text-gray-900">{{content.varietyId}}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 border-b border-gray-200">
+                        <div class="text-sm text-gray-900">{{content.userId}}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 border-b border-gray-200">
+                        <div class="text-sm text-gray-900">{{content.createdAt | date: 'dd/MM/yyyy'}}
                         </div>
                     </td>
 

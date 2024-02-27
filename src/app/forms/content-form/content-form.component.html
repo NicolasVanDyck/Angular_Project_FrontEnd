@@ -3,11 +3,44 @@
 </div>
 <form (ngSubmit)="onSubmit()" #categoryForm="ngForm">
     <div class="mb-6">
-        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Score</label>
-        <input type="name" id="name" name="name"
+        <label for="body" class="block mb-2 text-sm font-medium text-gray-900 ">Body</label>
+        <input type="body" id="body" name="body"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-               placeholder="Name" required [(ngModel)]="content.score" #name="ngModel">
-        <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">Score is required</div>
+               placeholder="body" required [(ngModel)]="content.body" #body="ngModel">
+        <div [hidden]="body.valid || body.pristine" class="text-red-500 mt-2">Body is required</div>
+    </div>
+    <div class="mb-6">
+        <label for="score" class="block mb-2 text-sm font-medium text-gray-900 ">Score</label>
+        <input type="score" id="score" name="score"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               placeholder="Score" required [(ngModel)]="content.score" #score="ngModel">
+        <div [hidden]="score.valid || score.pristine" class="text-red-500 mt-2">Score is required</div>
+    </div>
+    <div class="mb-6">
+        <label for="gameId" class="block mb-2 text-sm font-medium text-gray-900 ">gameId</label>
+        <input type="gameId" id="gameId" name="gameId"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               placeholder="gamePlatformId" required [(ngModel)]="content.gameId" #gameId="ngModel">
+        <div [hidden]="gameId.valid || gameId.pristine" class="text-red-500 mt-2">gameId is required</div>
+    </div>
+    <div class="mb-6">
+        <label for="varietyId" class="block mb-2 text-sm font-medium text-gray-900 ">varietyId</label>
+        <input type="varietyId" id="varietyId" name="varietyId"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               placeholder="varietyId" required [(ngModel)]="content.varietyId" #varietyId="ngModel">
+        <div [hidden]="varietyId.valid || varietyId.pristine" class="text-red-500 mt-2">varietyId is required</div>
+    </div>
+    <div class="mb-6">
+        <label for="userId" class="block mb-2 text-sm font-medium text-gray-900 ">userId</label>
+        <input type="userId" id="userId" name="userId"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               placeholder="userId" required [(ngModel)]="content.userId" #userId="ngModel">
+        <div [hidden]="userId.valid || userId.pristine" class="text-red-500 mt-2">userId is required</div>
+    </div>
+    <div class="mb-6">
+        <input type="hidden" id="createdAt" name="createdAt"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               placeholder="createdAt" [(ngModel)]="content.createdAt">
     </div>
 
     <button type="submit" *ngIf="isAdd" [disabled]="!categoryForm.form.valid || isSubmitted"
