@@ -6,7 +6,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { AdminComponent } from './admin/admin.component';
 import { adminGuard } from './admin.guard';
 import { ContentListComponent } from './content/content-list/content-list.component';
-import { ContentFormComponent } from './forms/content-form/content-form.component';
+import { ContentFormComponent } from './content/content-form/content-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
