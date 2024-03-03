@@ -7,6 +7,8 @@ import { AdminComponent } from './admin/admin.component';
 import { adminGuard } from './admin.guard';
 import { ContentListComponent } from './content/content-list/content-list.component';
 import { ContentFormComponent } from './content/content-form/content-form.component';
+import {PlatformListComponent} from "./platform/platform-list/platform-list.component";
+import {PlatformFormComponent} from "./platform/platform-form/platform-form.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +20,8 @@ const routes: Routes = [
   },
   { path: 'admin/content', component: ContentListComponent },
   { path: 'admin/content/form', component: ContentFormComponent },
+  { path: 'admin/platform', component: PlatformListComponent },
+  { path: 'admin/platform/form', component: PlatformFormComponent },
 ];
 
 @NgModule({

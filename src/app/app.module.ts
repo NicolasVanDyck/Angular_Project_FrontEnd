@@ -7,17 +7,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ContentListComponent } from './content/content-list/content-list.component';
-import { ContentFormComponent } from './content/content-form/content-form.component';
-import { GameListComponent } from './game/game-list/game-list.component';
-import { GameFormComponent } from './game/game-form/game-form.component';
-import { PlatformListComponent } from './platform/platform-list/platform-list.component';
-import { PlatformFormComponent } from './platform/platform-form/platform-form.component';
-import { VarietyListComponent } from './variety/variety-list/variety-list.component';
-import { VarietyFormComponent } from './variety/variety-form/variety-form.component';
 
 @NgModule({
-  declarations: [AppComponent, GameListComponent, GameFormComponent, PlatformListComponent, PlatformFormComponent, VarietyListComponent, VarietyFormComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

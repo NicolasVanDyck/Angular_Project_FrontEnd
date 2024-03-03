@@ -67,8 +67,8 @@ export class ContentFormComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.isSubmitted = true;
-    this.content.createdAt = new Date(); // Set the createdAt field to the current date and time
     if (this.isAdd) {
+      this.content.createdAt = new Date(); // Set the createdAt field to the current date and time
       this.postContent$ = this.contentService
         .postContent(this.content)
         .subscribe({
@@ -86,6 +86,4 @@ export class ContentFormComponent implements OnInit, OnDestroy {
         });
     }
   }
-
-  protected readonly Date = Date;
 }
