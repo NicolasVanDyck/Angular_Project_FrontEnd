@@ -35,6 +35,8 @@ export class ContentFormComponent implements OnInit, OnDestroy {
   postContent$: Subscription = new Subscription();
   putContent$: Subscription = new Subscription();
 
+  // game$: Subscription = new Subscription();
+
   constructor(
     private router: Router,
     private contentService: ContentService,
@@ -86,4 +88,10 @@ export class ContentFormComponent implements OnInit, OnDestroy {
         });
     }
   }
+  // getGames() {
+  //   this.game$ = this.contentService.getContents().subscribe((result) => {
+  //     this.contents = result.$values;
+  //     console.log(this.contents);
+  //   });
+  // }
 }

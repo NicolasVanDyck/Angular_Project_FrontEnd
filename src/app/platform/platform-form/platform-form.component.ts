@@ -68,8 +68,6 @@ export class PlatformFormComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    console.log(this.platformId);
-
   }
 
   ngOnDestroy(): void {
