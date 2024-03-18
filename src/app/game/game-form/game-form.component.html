@@ -1,1 +1,36 @@
-<p>game-form works!</p>
+<div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300" *ngIf="isSubmitted && errorMessage">
+  {{errorMessage}}
+</div>
+<form (ngSubmit)="onSubmit()" #gameForm="ngForm">
+  <div class="mb-6">
+    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Name</label>
+    <input type="name" id="name" name="name"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+           placeholder="name" required [(ngModel)]="game.name" #name="ngModel">
+    <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">Name is required</div>
+  </div>
+  <div class="mb-6">
+    <label for="publisher" class="block mb-2 text-sm font-medium text-gray-900 ">Publisher</label>
+    <input type="publisher" id="publisher" name="publisher"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+           placeholder="Publisher" required [(ngModel)]="game.publisher" #publisher="ngModel">
+    <div [hidden]="publisher.valid || publisher.pristine" class="text-red-500 mt-2">Publisher is required</div>
+  </div>
+  <div class="mb-6">
+    <label for="platform" class="block mb-2 text-sm font-medium text-gray-900 ">Platform</label>
+    <select id="platform" name="platform" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [(ngModel)]="game.platformId">
+      <option [ngValue]="0" disabled selected>Choose a platform</option>
+      <option *ngFor="let platform of platforms" [ngValue]="platform.id">{{platform.name}}</option>
+    </select>
+  </div>
+  <div class="mb-6">
+    <input type="hidden" id="createdAt" name="createdAt"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+           placeholder="createdAt" [(ngModel)]="game.createdAt">
+  </div>
+
+  <button type="submit" *ngIf="isAdd" [disabled]="!gameForm.form.valid || isSubmitted"
+          class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Add</button>
+  <button type="submit" *ngIf="isEdit" [disabled]="!gameForm.form.valid || isSubmitted"
+          class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Save</button>
+</form>

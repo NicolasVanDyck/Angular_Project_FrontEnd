@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { ContentService } from '../../content.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {Game} from "../../interfaces/game";
+import {GameService} from "../../game.service";
+import {Variety} from "../../interfaces/variety";
 
 @Component({
   selector: 'app-content-form',
@@ -35,11 +38,17 @@ export class ContentFormComponent implements OnInit, OnDestroy {
   postContent$: Subscription = new Subscription();
   putContent$: Subscription = new Subscription();
 
-  // game$: Subscription = new Subscription();
+  games: Game[] = [];
+  games$: Subscription = new Subscription();
+
+  varieties: Variety[] = [];
+  varieties$: Subscription = new Subscription();
 
   constructor(
     private router: Router,
     private contentService: ContentService,
+    private gameService: GameService,
+    // private varietyService: VarietyService,
   ) {
     this.isAdd =
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
@@ -59,7 +68,9 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getGames();
+  }
 
   ngOnDestroy(): void {
     this.content$.unsubscribe();
@@ -88,10 +99,12 @@ export class ContentFormComponent implements OnInit, OnDestroy {
         });
     }
   }
-  // getGames() {
-  //   this.game$ = this.contentService.getContents().subscribe((result) => {
-  //     this.contents = result.$values;
-  //     console.log(this.contents);
-  //   });
+  getGames() {
+    this.games$ = this.gameService.getGames().subscribe(result =>
+      this.games = result);
+  }
+  // getVarieties() {
+  //   this.varieties$ = this.gameService.getVarieties().subscribe(result =>
+  //     this.games = result);
   // }
 }

@@ -53,9 +53,7 @@ export class ContentListComponent implements OnInit, OnDestroy {
   }
 
   getContents() {
-    this.contents$ = this.contentService.getContents().subscribe((result) => {
-      this.contents = result.$values;
-      console.log(this.contents);
-    });
+    this.contents$ = this.contentService.getContents().subscribe(result =>
+      this.contents = result );
   }
 }

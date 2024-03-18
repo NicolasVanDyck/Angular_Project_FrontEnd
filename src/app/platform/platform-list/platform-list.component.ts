@@ -53,9 +53,7 @@ export class PlatformListComponent implements OnInit, OnDestroy {
   }
 
   getPlatforms() {
-    this.platforms$ = this.platformService.getPlatforms().subscribe((result) => {
-      this.platforms = result.$values;
-      console.log(this.platforms);
-    });
+    this.platforms$ = this.platformService.getPlatforms().subscribe(result =>
+      this.platforms = result);
   }
 }

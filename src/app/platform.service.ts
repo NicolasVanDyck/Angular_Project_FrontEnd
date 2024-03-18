@@ -12,8 +12,8 @@ export class PlatformService {
   constructor(private httpClient: HttpClient) {}
 
   // get all content from the API. This uses the API interface because the API returns an object with a $values property that contains the array of content
-  getPlatforms(): Observable<ApiResponse> {
-    return this.httpClient.get<ApiResponse>(environment.api_url + '/Platform');
+  getPlatforms(): Observable<Platform[]> {
+    return this.httpClient.get<Platform[]>(environment.api_url + '/Platform');
   }
 
   getPlatformById(id: number): Observable<Platform> {

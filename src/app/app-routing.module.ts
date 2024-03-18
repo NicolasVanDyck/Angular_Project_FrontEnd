@@ -9,6 +9,8 @@ import { ContentListComponent } from './content/content-list/content-list.compon
 import { ContentFormComponent } from './content/content-form/content-form.component';
 import {PlatformListComponent} from "./platform/platform-list/platform-list.component";
 import {PlatformFormComponent} from "./platform/platform-form/platform-form.component";
+import {GameListComponent} from "./game/game-list/game-list.component";
+import {GameFormComponent} from "./game/game-form/game-form.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'admin/content/form', component: ContentFormComponent },
   { path: 'admin/platform', component: PlatformListComponent },
   { path: 'admin/platform/form', component: PlatformFormComponent },
+  { path: 'admin/game', component: GameListComponent},
+  { path: 'admin/game/form', component: GameFormComponent},
 ];
 
 @NgModule({
