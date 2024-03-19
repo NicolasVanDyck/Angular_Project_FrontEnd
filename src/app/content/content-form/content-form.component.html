@@ -11,10 +11,10 @@
     </div>
     <div class="mb-6">
         <label for="score" class="block mb-2 text-sm font-medium text-gray-900 ">Score</label>
-        <input type="score" id="score" name="score"
+        <input type="number" max="10" min="0" id="score" name="score"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                placeholder="Score" required [(ngModel)]="content.score" #score="ngModel">
-        <div [hidden]="score.valid || score.pristine" class="text-red-500 mt-2">Score is required</div>
+        <div [hidden]="score.valid || score.pristine" class="text-red-500 mt-2">Score is required and needs to be between 0 and 10</div>
     </div>
     <div class="mb-6">
         <label for="game" class="block mb-2 text-sm font-medium text-gray-900 ">Game</label>
@@ -23,13 +23,13 @@
         <option *ngFor="let game of games" [ngValue]="game.id">{{game.name}}</option>
       </select>
     </div>
-    <div class="mb-6">
-        <label for="varietyId" class="block mb-2 text-sm font-medium text-gray-900 ">varietyId</label>
-        <input type="varietyId" id="varietyId" name="varietyId"
-               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-               placeholder="varietyId" required [(ngModel)]="content.varietyId" #varietyId="ngModel">
-        <div [hidden]="varietyId.valid || varietyId.pristine" class="text-red-500 mt-2">varietyId is required</div>
-    </div>
+  <div class="mb-6">
+    <label for="variety" class="block mb-2 text-sm font-medium text-gray-900 ">Variety</label>
+    <select id="variety" name="variety" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [(ngModel)]="content.varietyId">
+      <option [ngValue]="0" disabled selected>Choose a variety</option>
+      <option *ngFor="let variety of varieties" [ngValue]="variety.id">{{variety.name}}</option>
+    </select>
+  </div>
     <div class="mb-6">
         <input type="hidden" id="userName" name="userName"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

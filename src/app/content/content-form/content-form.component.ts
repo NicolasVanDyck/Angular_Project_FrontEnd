@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Content } from '../../interfaces/content';
-import { Subscription } from 'rxjs';
+import {max, Subscription} from 'rxjs';
 import { Router } from '@angular/router';
 import { ContentService } from '../../content.service';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,7 @@ import {Game} from "../../interfaces/game";
 import {GameService} from "../../game.service";
 import {Variety} from "../../interfaces/variety";
 import {AuthService} from "@auth0/auth0-angular";
+import {VarietyService} from "../../variety.service";
 
 @Component({
   selector: 'app-content-form',
@@ -53,7 +54,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     private router: Router,
     private contentService: ContentService,
     private gameService: GameService,
-    // private varietyService: VarietyService,
+    private varietyService: VarietyService,
     private auth: AuthService,
   ) {
     this.isAdd =
@@ -82,6 +83,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getGames();
+    this.getVarieties();
     this.content.userName = this.nickname; // Set the userName field to the current user's nickname
   }
 
@@ -116,8 +118,8 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     this.games$ = this.gameService.getGames().subscribe(result =>
       this.games = result);
   }
-  // getVarieties() {
-  //   this.varieties$ = this.gameService.getVarieties().subscribe(result =>
-  //     this.games = result);
-  // }
+  getVarieties() {
+    this.varieties$ = this.varietyService.getVarieties().subscribe(result =>
+      this.varieties = result);
+  }
 }
