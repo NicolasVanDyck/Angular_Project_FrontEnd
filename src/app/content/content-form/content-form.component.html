@@ -31,11 +31,9 @@
         <div [hidden]="varietyId.valid || varietyId.pristine" class="text-red-500 mt-2">varietyId is required</div>
     </div>
     <div class="mb-6">
-        <label for="userId" class="block mb-2 text-sm font-medium text-gray-900 ">userId</label>
-        <input type="userId" id="userId" name="userId"
+        <input type="hidden" id="userName" name="userName"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-               placeholder="userId" required [(ngModel)]="content.userId" #userId="ngModel">
-        <div [hidden]="userId.valid || userId.pristine" class="text-red-500 mt-2">userId is required</div>
+               placeholder="userName" required [(ngModel)]="content.userName">
     </div>
     <div class="mb-6">
         <input type="hidden" id="createdAt" name="createdAt"

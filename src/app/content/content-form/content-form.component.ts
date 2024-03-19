@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {Game} from "../../interfaces/game";
 import {GameService} from "../../game.service";
 import {Variety} from "../../interfaces/variety";
+import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-content-form',
@@ -20,6 +21,10 @@ export class ContentFormComponent implements OnInit, OnDestroy {
   isAdd: boolean = false;
   isEdit: boolean = false;
   contentId: number = 0;
+  nickname: string = '';
+
+  user$ = this.auth.user$
+
 
   content: Content = {
     id: 0,
@@ -27,7 +32,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     score: 0,
     gameId: 0,
     varietyId: 0,
-    userId: 0,
+    userName: this.nickname,
     createdAt: new Date(),
   };
 
@@ -49,6 +54,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     private contentService: ContentService,
     private gameService: GameService,
     // private varietyService: VarietyService,
+    private auth: AuthService,
   ) {
     this.isAdd =
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
@@ -66,10 +72,17 @@ export class ContentFormComponent implements OnInit, OnDestroy {
         .getContentById(this.contentId)
         .subscribe((result) => (this.content = result));
     }
+
+    this.user$.subscribe(user => {
+      if (user) {
+        this.nickname = user.nickname ? user.nickname : "";
+      }
+    });
   }
 
   ngOnInit(): void {
     this.getGames();
+    this.content.userName = this.nickname; // Set the userName field to the current user's nickname
   }
 
   ngOnDestroy(): void {

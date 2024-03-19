@@ -31,10 +31,13 @@
                         Variety</th>
                     <th
                             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-                        User</th>
+                        Nickname</th>
                     <th
                             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-                        CreatedAt</th>
+                        Created At</th>
+                  <th
+                    class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+                    Updated At</th>
                     <th class="px-6 py-3 text-xs text-center text-gray-500 border-b border-gray-200 bg-gray-50">
                         &nbsp;</th>
                 </tr>
@@ -66,13 +69,17 @@
                         </div>
                     </td>
                     <td class="px-6 py-4 border-b border-gray-200">
-                        <div class="text-sm text-gray-900">{{content.userId}}
+                        <div class="text-sm text-gray-900">{{content.userName}}
                         </div>
                     </td>
                     <td class="px-6 py-4 border-b border-gray-200">
                         <div class="text-sm text-gray-900">{{content.createdAt | date: 'dd/MM/yyyy'}}
                         </div>
                     </td>
+                  <td class="px-6 py-4 border-b border-gray-200">
+                    <div class="text-sm text-gray-900">{{content.updatedAt | date: 'dd/MM/yyyy'}}
+                    </div>
+                  </td>
 
                     <td class="text-sm font-medium border-b border-gray-200">
                         <div class="flex justify-end gap-4">

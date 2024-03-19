@@ -9,6 +9,7 @@ export interface Content {
   game?: Game;
   varietyId: number;
   variety?: Variety;
-  userId: number;
+  userName: string;
   createdAt: Date;
+  updatedAt?: Date;
 }
