@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, signal} from '@angular/core';
 import { Content } from '../../interfaces/content';
 import {max, Subscription} from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import {GameService} from "../../game.service";
 import {Variety} from "../../interfaces/variety";
 import {AuthService} from "@auth0/auth0-angular";
 import {VarietyService} from "../../variety.service";
+import {RoleService} from "../../role.service";
 
 @Component({
   selector: 'app-content-form',
@@ -25,6 +26,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
   nickname: string = '';
 
   user$ = this.auth.user$
+  isAdmin = signal(false);
 
 
   content: Content = {
@@ -56,6 +58,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     private gameService: GameService,
     private varietyService: VarietyService,
     private auth: AuthService,
+    private roleService: RoleService,
   ) {
     this.isAdd =
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
@@ -79,6 +82,9 @@ export class ContentFormComponent implements OnInit, OnDestroy {
         this.nickname = user.nickname ? user.nickname : "";
       }
     });
+    this.roleService.hasPermission('getall:contents').subscribe((r) => {
+      this.isAdmin.set(r);
+    });
   }
 
   ngOnInit(): void {
@@ -97,21 +103,42 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     this.isSubmitted = true;
     if (this.isAdd) {
       this.content.createdAt = new Date(); // Set the createdAt field to the current date and time
-      this.postContent$ = this.contentService
-        .postContent(this.content)
-        .subscribe({
-          // next is the success callback, error is the error callback
-          next: (v) => this.router.navigateByUrl('/admin/content'),
-          error: (e) => (this.errorMessage = e.message),
-        });
+      if (this.isAdmin()) {
+        this.postContent$ = this.contentService
+          .postContent(this.content)
+          .subscribe({
+            // next is the success callback, error is the error callback
+            next: (v) => this.router.navigateByUrl('/admin/content'),
+            error: (e) => (this.errorMessage = e.message),
+          });
+      } else {
+        this.postContent$ = this.contentService
+          .postContent(this.content)
+          .subscribe({
+            // next is the success callback, error is the error callback
+            next: (v) => this.router.navigateByUrl('/user/content'),
+            error: (e) => (this.errorMessage = e.message),
+          });
+      }
+
     }
     if (this.isEdit) {
-      this.putContent$ = this.contentService
-        .putContent(this.contentId, this.content)
-        .subscribe({
-          next: (v) => this.router.navigateByUrl('/admin/content'),
-          error: (e) => (this.errorMessage = e.message),
-        });
+      if (this.isAdmin()) {
+        this.putContent$ = this.contentService
+          .putContent(this.contentId, this.content)
+          .subscribe({
+            next: (v) => this.router.navigateByUrl('/admin/content'),
+            error: (e) => (this.errorMessage = e.message),
+          });
+      } else {
+        this.putContent$ = this.contentService
+          .putContent(this.contentId, this.content)
+          .subscribe({
+            next: (v) => this.router.navigateByUrl('/user/content'),
+            error: (e) => (this.errorMessage = e.message),
+          });
+      }
+
     }
   }
   getGames() {

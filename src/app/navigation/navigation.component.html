@@ -66,7 +66,7 @@
                   >Walkthroughs</a
                   >
                 </li>
-                  <div *ngIf="isAuthenticated()">
+                  <div *ngIf="isAuthenticated() && !isAdmin()">
                     <li>
                       <a
                         [routerLinkActiveOptions]="{ exact: true }"

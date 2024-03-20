@@ -34,6 +34,8 @@ const routes: Routes = [
       { path: 'variety/form', component: VarietyFormComponent},
     ],
   },
+  { path: 'user/content', component: ContentListComponent },
+  { path: 'user/content/form', component: ContentFormComponent },
 
 ];
 
