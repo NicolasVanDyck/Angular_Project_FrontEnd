@@ -13,23 +13,28 @@ import {GameListComponent} from "./game/game-list/game-list.component";
 import {GameFormComponent} from "./game/game-form/game-form.component";
 import {VarietyListComponent} from "./variety/variety-list/variety-list.component";
 import {VarietyFormComponent} from "./variety/variety-form/variety-form.component";
+import {WalkthroughComponent} from "./walkthrough/walkthrough.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'review', component: ReviewComponent },
+  { path: 'reviews', component: ReviewComponent },
+  { path: 'walkthroughs', component: WalkthroughComponent },
   {
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard, adminGuard],
+    children: [
+      { path: 'content', component: ContentListComponent },
+      { path: 'content/form', component: ContentFormComponent },
+      { path: 'platform', component: PlatformListComponent },
+      { path: 'platform/form', component: PlatformFormComponent },
+      { path: 'game', component: GameListComponent},
+      { path: 'game/form', component: GameFormComponent},
+      { path: 'variety', component: VarietyListComponent},
+      { path: 'variety/form', component: VarietyFormComponent},
+    ],
   },
-  { path: 'admin/content', component: ContentListComponent },
-  { path: 'admin/content/form', component: ContentFormComponent },
-  { path: 'admin/platform', component: PlatformListComponent },
-  { path: 'admin/platform/form', component: PlatformFormComponent },
-  { path: 'admin/game', component: GameListComponent},
-  { path: 'admin/game/form', component: GameFormComponent},
-  { path: 'admin/variety', component: VarietyListComponent},
-  { path: 'admin/variety/form', component: VarietyFormComponent},
+
 ];
 
 @NgModule({
