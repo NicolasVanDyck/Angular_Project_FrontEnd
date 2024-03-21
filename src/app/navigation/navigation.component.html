@@ -1,89 +1,97 @@
 <nav>
-    <div class="bg-white border-gray-200 dark:bg-gray-900" xmlns="http://www.w3.org/1999/html">
-        <div
-                class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
+  <div class="bg-white border-gray-200 dark:bg-gray-900" xmlns="http://www.w3.org/1999/html">
+    <div
+      class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
+    >
+      <a
+        class="flex items-center space-x-3 rtl:space-x-reverse"
+        href="https://flowbite.com"
+      >
+
+        <!--      <img-->
+        <!--        alt="Flowbite Logo"-->
+        <!--        class="h-8"-->
+        <!--        src="https://flowbite.com/docs/images/logo.svg"-->
+        <!--      />-->
+        <span
+          class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        >Loopers Nest</span
         >
+      </a>
+      <div *ngIf="isAuthenticated(); else LoggedOut">
+        <app-logout-button></app-logout-button>
+        <app-user-info></app-user-info>
+      </div>
+      <ng-template #LoggedOut>
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+          <app-login-button></app-login-button>
+          <app-sign-up-button></app-sign-up-button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="bg-gray-50 dark:bg-gray-700">
+    <div class="max-w-screen-xl px-4 py-3 mx-auto">
+      <div class="flex items-center">
+        <ul
+          class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm"
+        >
+          <li>
             <a
-                    class="flex items-center space-x-3 rtl:space-x-reverse"
-                    href="https://flowbite.com"
+              [routerLinkActiveOptions]="{ exact: true }"
+              aria-current="page"
+              class="text-gray-900 dark:text-white hover:underline"
+              routerLink="/"
+              routerLinkActive="active"
+            >Home</a
             >
+          </li>
+          <li>
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              aria-current="page"
+              class="text-gray-900 dark:text-white hover:underline"
+              routerLink="/reviews"
+              routerLinkActive="active"
+            >Reviews</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              aria-current="page"
+              class="text-gray-900 dark:text-white hover:underline"
+              routerLink="/walkthroughs"
+              routerLinkActive="active"
+            >Walkthroughs</a
+            >
+          </li>
+          <div *ngIf="isAuthenticated() && !isAdmin()">
+            <li>
+              <a
+                [routerLinkActiveOptions]="{ exact: true }"
+                aria-current="page"
+                class="text-gray-900 dark:text-white hover:underline"
+                routerLink="/user/content"
+                routerLinkActive="active"
+              >My content</a
+              >
+            </li>
+          </div>
 
-                <!--      <img-->
-                <!--        alt="Flowbite Logo"-->
-                <!--        class="h-8"-->
-                <!--        src="https://flowbite.com/docs/images/logo.svg"-->
-                <!--      />-->
-                <span
-                        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-                >Loopers Nest</span
-                >
-            </a>
-            <div *ngIf="isAuthenticated(); else LoggedOut">
-                <app-logout-button></app-logout-button>
-                <app-user-info></app-user-info>
-            </div>
-            <ng-template #LoggedOut>
-                <div class="flex items-center space-x-6 rtl:space-x-reverse">
-                    <app-login-button></app-login-button>
-                    <app-sign-up-button></app-sign-up-button>
-                </div>
-            </ng-template>
-        </div>
-    </div>
-    <div class="bg-gray-50 dark:bg-gray-700">
-        <div class="max-w-screen-xl px-4 py-3 mx-auto">
-            <div class="flex items-center">
-                <ul
-                        class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm"
-                >
-                    <li>
-                        <a
-                                [routerLinkActiveOptions]="{ exact: true }"
-                                aria-current="page"
-                                class="text-gray-900 dark:text-white hover:underline"
-                                routerLink="/"
-                                routerLinkActive="active"
-                        >Home</a
-                        >
-                    </li>
-                  <li>
-                    <a
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      aria-current="page"
-                      class="text-gray-900 dark:text-white hover:underline"
-                      routerLink="/reviews"
-                      routerLinkActive="active"
-                    >Reviews</a
-                    >
-                  </li>
-                  <li>
-                  <a
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    aria-current="page"
-                    class="text-gray-900 dark:text-white hover:underline"
-                    routerLink="/walkthroughs"
-                    routerLinkActive="active"
-                  >Walkthroughs</a
-                  >
-                </li>
-                  <div *ngIf="isAuthenticated() && !isAdmin()">
-                    <li>
-                      <a
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        aria-current="page"
-                        class="text-gray-900 dark:text-white hover:underline"
-                        routerLink="/user/content"
-                        routerLinkActive="active"
-                      >My content</a
-                      >
-                    </li>
-                  </div>
+          <div *ngIf="isAdmin()">
+            <app-admin-dropdown></app-admin-dropdown>
+          </div>
+        </ul>
+        <button
+          class="flex transition-transform hover:scale-125 align-middle"
+          (click)="darkMode.set(!darkMode())"
+        >
+          <span *ngIf="!darkMode()" class="material-icons">dark_mode</span>
+          <span *ngIf="darkMode()" class="material-icons">light_mode</span>
+        </button>
 
-                    <div *ngIf="isAdmin()">
-                        <app-admin-dropdown></app-admin-dropdown>
-                    </div>
-                </ul>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </nav>

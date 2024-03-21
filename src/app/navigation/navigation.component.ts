@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  HostBinding,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -28,10 +34,22 @@ import { AdminDropdownComponent } from '../admin/admin-dropdown/admin-dropdown.c
 export class NavigationComponent {
   isAuthenticated = signal(false);
   isAdmin = signal(false);
+
+  darkMode = signal<boolean>(
+    JSON.parse(window.localStorage.getItem('darkMode') ?? 'false'),
+  );
+
+  @HostBinding('class.dark') get mode() {
+    return this.darkMode();
+  }
+
   constructor(
     private auth: AuthService,
     public roleService: RoleService,
   ) {
+    effect(() => {
+      window.localStorage.setItem('darkMode', JSON.stringify(this.darkMode()));
+    });
     this.auth.isAuthenticated$.subscribe((auth) => {
       this.isAuthenticated.set(auth);
     });

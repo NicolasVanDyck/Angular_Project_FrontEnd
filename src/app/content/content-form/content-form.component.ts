@@ -31,6 +31,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
 
   content: Content = {
     id: 0,
+    title: '',
     body: '',
     score: 0,
     gameId: 0,

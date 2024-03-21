@@ -3,6 +3,7 @@ import {Variety} from "./variety";
 
 export interface Content {
   id: number;
+  title: string;
   body: string;
   score: number;
   gameId: number;
