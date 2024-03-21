@@ -14,6 +14,7 @@ import { LogoutButtonComponent } from '../buttons/logout-button/logout-button.co
 import { RoleService } from '../role.service';
 import { UserInfoComponent } from '../user-info/user-info.component';
 import { AdminDropdownComponent } from '../admin/admin-dropdown/admin-dropdown.component';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-navigation',
@@ -35,21 +36,11 @@ export class NavigationComponent {
   isAuthenticated = signal(false);
   isAdmin = signal(false);
 
-  darkMode = signal<boolean>(
-    JSON.parse(window.localStorage.getItem('darkMode') ?? 'false'),
-  );
-
-  @HostBinding('class.dark') get mode() {
-    return this.darkMode();
-  }
-
   constructor(
     private auth: AuthService,
     public roleService: RoleService,
+    public themeService: ThemeService,
   ) {
-    effect(() => {
-      window.localStorage.setItem('darkMode', JSON.stringify(this.darkMode()));
-    });
     this.auth.isAuthenticated$.subscribe((auth) => {
       this.isAuthenticated.set(auth);
     });

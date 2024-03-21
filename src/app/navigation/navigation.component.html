@@ -85,10 +85,10 @@
         </ul>
         <button
           class="flex transition-transform hover:scale-125 align-middle"
-          (click)="darkMode.set(!darkMode())"
+          (click)="themeService.toggleDarkMode()"
         >
-          <span *ngIf="!darkMode()" class="material-icons">dark_mode</span>
-          <span *ngIf="darkMode()" class="material-icons">light_mode</span>
+          <span *ngIf="!themeService.darkMode()" class="material-icons">dark_mode</span>
+          <span *ngIf="themeService.darkMode()" class="material-icons">light_mode</span>
         </button>
 
       </div>

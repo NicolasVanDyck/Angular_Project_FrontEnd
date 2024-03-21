@@ -1,102 +1,85 @@
-<div class="container mx-auto mt-8">
-  <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300" *ngIf="errorMessage">
-    {{ errorMessage }}
-  </div>
-  <div class="mb-4">
-    <h1 class="text-3xl">Contents</h1>
-    <div class="flex justify-end">
-      <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600" (click)="add()">Create
-        content
-      </button>
+<div class="dark:bg-gray-900">
+  <div class="container mx-auto pt-8">
+    <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300" *ngIf="errorMessage">
+      {{ errorMessage }}
     </div>
-  </div>
-  <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-    <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-      <table class="min-w-full">
-        <thead>
+    <div class="mb-4">
+      <h1 class="text-3xl">Contents</h1>
+      <div class="flex justify-end">
+        <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600" (click)="add()">Create
+          content
+        </button>
+      </div>
+    </div>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            #
-          </th>
-          <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+            scope="col" class="px-6 py-3">
             Title
           </th>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+            scope="col" class="px-6 py-3">
             Body
           </th>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+            scope="col" class="px-6 py-3">
             Score
           </th>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+            scope="col" class="px-6 py-3">
             Game
           </th>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+            scope="col" class="px-6 py-3">
             Variety
           </th>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            Nickname
+            scope="col" class="px-6 py-3">
+            User
           </th>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+            scope="col" class="px-6 py-3">
             Created At
           </th>
           <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
+            scope="col" class="px-6 py-3">
             Updated At
           </th>
-          <th class="px-6 py-3 text-xs text-center text-gray-500 border-b border-gray-200 bg-gray-50">
+          <th scope="col" class="px-6 py-3">
             &nbsp;
           </th>
         </tr>
         </thead>
 
-        <tbody class="bg-white">
-        <tr *ngFor="let content of contents">
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="flex items-center">
-              {{ content.id }}
-            </div>
-
-          </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.title }}
-            </div>
-          </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.body }}
-            </div>
+        <tbody>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+            *ngFor="let content of contents">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{ content.title }}
+          </th>
+          <td class="px-6 py-4">
+            {{ content.body }}
           </td>
 
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.score }}/10
-            </div>
+          <td class="px-6 py-4">
+            {{ content.score }}/10
           </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.game?.name }}
-            </div>
+          <td class="px-6 py-4">
+            {{ content.game?.name }}
           </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.variety?.name }}
-            </div>
+          <td class="px-6 py-4">
+            {{ content.variety?.name }}
           </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.userName }}
-            </div>
+          <td class="px-6 py-4">
+            {{ content.userName }}
           </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.createdAt | date: 'dd/MM/yyyy' }}
-            </div>
+          <td class="px-6 py-4">
+            {{ content.createdAt | date: 'dd/MM/yyyy' }}
           </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ content.updatedAt | date: 'dd/MM/yyyy' }}
-            </div>
+          <td class="px-6 py-4">
+            {{ content.updatedAt | date: 'dd/MM/yyyy' }}
           </td>
 
           <td class="text-sm font-medium border-b border-gray-200">
