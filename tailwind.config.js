@@ -32,6 +32,9 @@ module.exports = {
         warning: "#D08770",
         danger: "#bf616a",
       },
+      fontFamily: {
+        Millenia: ["Millenia", "serif"],
+      },
     },
   },
   plugins: [require("flowbite/plugin")],

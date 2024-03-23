@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit, signal} from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Content } from '../../interfaces/content';
 import { Subscription } from 'rxjs';
 import { ContentService } from '../../content.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {AuthService} from "@auth0/auth0-angular";
-import {RoleService} from "../../role.service";
+import { AuthService } from '@auth0/auth0-angular';
+import { RoleService } from '../../role.service';
 
 @Component({
   selector: 'app-content-list',
@@ -19,11 +19,10 @@ export class ContentListComponent implements OnInit, OnDestroy {
   contents$: Subscription = new Subscription();
   deleteContent$: Subscription = new Subscription();
 
-  user$ = this.auth.user$
+  user$ = this.auth.user$;
   nickname: string = '';
   isAdmin = signal(false);
-
-
+  isWriter = signal(false);
 
   errorMessage: string = '';
 
@@ -33,13 +32,16 @@ export class ContentListComponent implements OnInit, OnDestroy {
     public roleService: RoleService,
     private router: Router,
   ) {
-    this.user$.subscribe(user => {
+    this.user$.subscribe((user) => {
       if (user) {
-        this.nickname = user.nickname ? user.nickname : "";
+        this.nickname = user.nickname ? user.nickname : '';
       }
     });
-    this.roleService.hasPermission('getall:contents').subscribe((r) => {
+    this.roleService.hasPermission('admin').subscribe((r) => {
       this.isAdmin.set(r);
+    });
+    this.roleService.hasPermission('writer').subscribe((r) => {
+      this.isWriter.set(r);
     });
   }
 
@@ -53,11 +55,11 @@ export class ContentListComponent implements OnInit, OnDestroy {
   }
 
   add() {
-    if( this.isAdmin() ) {
+    if (this.isAdmin()) {
       //Navigate to form in add mode
-      this.router.navigate(['admin/content/form'], {state: {mode: 'add'}});
-    } else {
-      this.router.navigate(['user/content/form'], {state: {mode: 'add'}});
+      this.router.navigate(['admin/content/form'], { state: { mode: 'add' } });
+    } else if (this.isWriter()) {
+      this.router.navigate(['writer/content/form'], { state: { mode: 'add' } });
     }
   }
 
@@ -67,8 +69,8 @@ export class ContentListComponent implements OnInit, OnDestroy {
       this.router.navigate(['admin/content/form'], {
         state: { id: id, mode: 'edit' },
       });
-    } else {
-      this.router.navigate(['user/content/form'], {
+    } else if (this.isWriter()) {
+      this.router.navigate(['writer/content/form'], {
         state: { id: id, mode: 'edit' },
       });
     }
@@ -83,12 +85,11 @@ export class ContentListComponent implements OnInit, OnDestroy {
 
   getContents() {
     this.contents$ = this.contentService.getContents().subscribe((result) => {
-      if(this.isAdmin()){
+      if (this.isAdmin()) {
         this.contents = result;
-      } else {
-        this.contents = result.filter(c => c.userName === this.nickname);
+      } else if (this.isWriter()) {
+        this.contents = result.filter((c) => c.userName === this.nickname);
       }
     });
-
   }
 }

@@ -2,3 +2,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Millenia";
+  src: url("~src/assets/fonts/MilleniaPersonalUse-w1OB8.ttf");
+}

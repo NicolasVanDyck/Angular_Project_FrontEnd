@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit, signal} from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Content } from '../../interfaces/content';
-import {max, Subscription} from 'rxjs';
+import { max, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ContentService } from '../../content.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {Game} from "../../interfaces/game";
-import {GameService} from "../../game.service";
-import {Variety} from "../../interfaces/variety";
-import {AuthService} from "@auth0/auth0-angular";
-import {VarietyService} from "../../variety.service";
-import {RoleService} from "../../role.service";
+import { Game } from '../../interfaces/game';
+import { GameService } from '../../game.service';
+import { Variety } from '../../interfaces/variety';
+import { AuthService } from '@auth0/auth0-angular';
+import { VarietyService } from '../../variety.service';
+import { RoleService } from '../../role.service';
 
 @Component({
   selector: 'app-content-form',
@@ -25,9 +25,9 @@ export class ContentFormComponent implements OnInit, OnDestroy {
   contentId: number = 0;
   nickname: string = '';
 
-  user$ = this.auth.user$
+  user$ = this.auth.user$;
   isAdmin = signal(false);
-
+  isWriter = signal(false);
 
   content: Content = {
     id: 0,
@@ -37,6 +37,7 @@ export class ContentFormComponent implements OnInit, OnDestroy {
     gameId: 0,
     varietyId: 0,
     userName: this.nickname,
+    isApproved: false,
     createdAt: new Date(),
   };
 
@@ -78,13 +79,16 @@ export class ContentFormComponent implements OnInit, OnDestroy {
         .subscribe((result) => (this.content = result));
     }
 
-    this.user$.subscribe(user => {
+    this.user$.subscribe((user) => {
       if (user) {
-        this.nickname = user.nickname ? user.nickname : "";
+        this.nickname = user.nickname ? user.nickname : '';
       }
     });
-    this.roleService.hasPermission('getall:contents').subscribe((r) => {
+    this.roleService.hasPermission('admin').subscribe((r) => {
       this.isAdmin.set(r);
+    });
+    this.roleService.hasPermission('writer').subscribe((r) => {
+      this.isWriter.set(r);
     });
   }
 
@@ -112,16 +116,15 @@ export class ContentFormComponent implements OnInit, OnDestroy {
             next: (v) => this.router.navigateByUrl('/admin/content'),
             error: (e) => (this.errorMessage = e.message),
           });
-      } else {
+      } else if (this.isWriter()) {
         this.postContent$ = this.contentService
           .postContent(this.content)
           .subscribe({
             // next is the success callback, error is the error callback
-            next: (v) => this.router.navigateByUrl('/user/content'),
+            next: (v) => this.router.navigateByUrl('/writer/content'),
             error: (e) => (this.errorMessage = e.message),
           });
       }
-
     }
     if (this.isEdit) {
       if (this.isAdmin()) {
@@ -131,23 +134,27 @@ export class ContentFormComponent implements OnInit, OnDestroy {
             next: (v) => this.router.navigateByUrl('/admin/content'),
             error: (e) => (this.errorMessage = e.message),
           });
-      } else {
+      } else if (this.isWriter()) {
+        this.content.isApproved = false; // Set the isApproved field to false
         this.putContent$ = this.contentService
           .putContent(this.contentId, this.content)
           .subscribe({
-            next: (v) => this.router.navigateByUrl('/user/content'),
+            next: (v) => this.router.navigateByUrl('/writer/content'),
             error: (e) => (this.errorMessage = e.message),
           });
       }
-
     }
   }
+
   getGames() {
-    this.games$ = this.gameService.getGames().subscribe(result =>
-      this.games = result);
+    this.games$ = this.gameService
+      .getGames()
+      .subscribe((result) => (this.games = result));
   }
+
   getVarieties() {
-    this.varieties$ = this.varietyService.getVarieties().subscribe(result =>
-      this.varieties = result);
+    this.varieties$ = this.varietyService
+      .getVarieties()
+      .subscribe((result) => (this.varieties = result));
   }
 }

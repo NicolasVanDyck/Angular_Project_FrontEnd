@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-home',
@@ -8,4 +9,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(private auth: AuthService) {
+    this.auth.getAccessTokenSilently().subscribe((token) => {
+      console.log('Access Token:', token);
+    });
+  }
+}

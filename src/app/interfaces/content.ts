@@ -1,5 +1,5 @@
-import {Game} from "./game";
-import {Variety} from "./variety";
+import { Game } from './game';
+import { Variety } from './variety';
 
 export interface Content {
   id: number;
@@ -11,6 +11,7 @@ export interface Content {
   varietyId: number;
   variety?: Variety;
   userName: string;
+  isApproved: boolean;
   createdAt: Date;
   updatedAt?: Date;
 }

@@ -5,29 +5,26 @@
     >
       <a
         class="flex items-center space-x-3 rtl:space-x-reverse"
-        href="https://flowbite.com"
+        href="#"
       >
-
-        <!--      <img-->
-        <!--        alt="Flowbite Logo"-->
-        <!--        class="h-8"-->
-        <!--        src="https://flowbite.com/docs/images/logo.svg"-->
-        <!--      />-->
         <span
-          class="self-center text-2xl font-semibold whitespace-nowrap dark:text-zinc-200"
+          class="font-Millenia self-center text-3xl font-semibold whitespace-nowrap dark:text-nord7"
         >Loopers Nest</span
         >
       </a>
-      <div *ngIf="isAuthenticated(); else LoggedOut">
-        <app-logout-button></app-logout-button>
-        <app-user-info></app-user-info>
-      </div>
-      <ng-template #LoggedOut>
-        <div class="flex items-center space-x-6 rtl:space-x-reverse">
-          <app-login-button></app-login-button>
-          <app-sign-up-button></app-sign-up-button>
+      <div class="flex border-nord11 border-2">
+        <div class="flex space-x-3 justify-between" *ngIf="isAuthenticated(); else LoggedOut">
+          <app-user-info></app-user-info>
+          <app-logout-button></app-logout-button>
         </div>
-      </ng-template>
+        <ng-template #LoggedOut>
+          <div class="flex space-x-3 justify-between ">
+            <app-login-button></app-login-button>
+            <app-sign-up-button></app-sign-up-button>
+          </div>
+        </ng-template>
+      </div>
+
     </div>
   </div>
   <div class="bg-gray-50 dark:bg-gray-700">
@@ -40,7 +37,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               aria-current="page"
-              class="text-gray-900 dark:text-white hover:underline"
+              class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
               routerLink="/"
               routerLinkActive="active"
             >Home</a
@@ -50,7 +47,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               aria-current="page"
-              class="text-gray-900 dark:text-white hover:underline"
+              class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
               routerLink="/reviews"
               routerLinkActive="active"
             >Reviews</a
@@ -60,37 +57,33 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               aria-current="page"
-              class="text-gray-900 dark:text-white hover:underline"
+              class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
               routerLink="/walkthroughs"
               routerLinkActive="active"
             >Walkthroughs</a
             >
           </li>
-          <div *ngIf="isAuthenticated() && !isAdmin()">
+          <div *ngIf="isWriter()">
             <li>
               <a
                 [routerLinkActiveOptions]="{ exact: true }"
                 aria-current="page"
-                class="text-gray-900 dark:text-white hover:underline"
-                routerLink="/user/content"
+                class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
+                routerLink="/writer/content"
                 routerLinkActive="active"
               >My content</a
               >
             </li>
           </div>
-
           <div *ngIf="isAdmin()">
-            <app-admin-dropdown></app-admin-dropdown>
+            <li>
+              <app-admin-dropdown></app-admin-dropdown>
+            </li>
           </div>
+          <li>
+            <app-light-dark></app-light-dark>
+          </li>
         </ul>
-        <button
-          class="flex transition-transform hover:scale-125 align-middle"
-          (click)="themeService.toggleDarkMode()"
-        >
-          <span *ngIf="!themeService.darkMode()" class="material-icons">dark_mode</span>
-          <span *ngIf="themeService.darkMode()" class="material-icons">light_mode</span>
-        </button>
-
       </div>
     </div>
   </div>

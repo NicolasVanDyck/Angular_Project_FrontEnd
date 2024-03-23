@@ -15,6 +15,7 @@ import { RoleService } from '../role.service';
 import { UserInfoComponent } from '../user-info/user-info.component';
 import { AdminDropdownComponent } from '../admin/admin-dropdown/admin-dropdown.component';
 import { ThemeService } from '../theme.service';
+import { LightDarkComponent } from '../buttons/light-dark/light-dark.component';
 
 @Component({
   selector: 'app-navigation',
@@ -27,6 +28,7 @@ import { ThemeService } from '../theme.service';
     LogoutButtonComponent,
     UserInfoComponent,
     AdminDropdownComponent,
+    LightDarkComponent,
   ],
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
@@ -35,6 +37,7 @@ import { ThemeService } from '../theme.service';
 export class NavigationComponent {
   isAuthenticated = signal(false);
   isAdmin = signal(false);
+  isWriter = signal(false);
 
   constructor(
     private auth: AuthService,
@@ -44,8 +47,11 @@ export class NavigationComponent {
     this.auth.isAuthenticated$.subscribe((auth) => {
       this.isAuthenticated.set(auth);
     });
-    this.roleService.hasPermission('getall:contents').subscribe((r) => {
+    this.roleService.hasPermission('admin').subscribe((r) => {
       this.isAdmin.set(r);
+    });
+    this.roleService.hasPermission('writer').subscribe((r) => {
+      this.isWriter.set(r);
     });
   }
 }

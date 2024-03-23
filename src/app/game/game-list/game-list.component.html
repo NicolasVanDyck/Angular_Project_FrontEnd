@@ -1,12 +1,20 @@
 <div class="container mx-auto mt-8">
   <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300" *ngIf="errorMessage">
-    {{errorMessage}}
+    {{ errorMessage }}
   </div>
   <div class="mb-4">
     <h1 class="text-3xl">Games</h1>
     <div class="flex justify-end">
-      <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600" (click)="add()">Create
-        game</button>
+      <button
+        (click)="add()"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-nord8 to-nord10 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      >
+        <span
+          class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+        >
+          Create Game
+        </span>
+      </button>
     </div>
   </div>
   <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -16,21 +24,27 @@
         <tr>
           <th
             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            #</th>
+            #
+          </th>
           <th
             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            Name</th>
+            Name
+          </th>
           <th
             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            Publisher</th>
+            Publisher
+          </th>
           <th
             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            Platform</th>
+            Platform
+          </th>
           <th
             class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            CreatedAt</th>
+            CreatedAt
+          </th>
           <th class="px-6 py-3 text-xs text-center text-gray-500 border-b border-gray-200 bg-gray-50">
-            &nbsp;</th>
+            &nbsp;
+          </th>
         </tr>
         </thead>
 
@@ -38,44 +52,46 @@
         <tr *ngFor="let game of games">
           <td class="px-6 py-4 border-b border-gray-200">
             <div class="flex items-center">
-              {{game.id}}
+              {{ game.id }}
             </div>
 
           </td>
           <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{game.name}}
+            <div class="text-sm text-gray-900">{{ game.name }}
             </div>
           </td>
 
           <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{game.publisher}}
+            <div class="text-sm text-gray-900">{{ game.publisher }}
             </div>
           </td>
           <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{game.platform?.name}}
+            <div class="text-sm text-gray-900">{{ game.platform?.name }}
             </div>
           </td>
           <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{game.createdAt | date: 'dd/MM/yyyy'}}
+            <div class="text-sm text-gray-900">{{ game.createdAt | date: 'dd/MM/yyyy' }}
             </div>
           </td>
 
           <td class="text-sm font-medium border-b border-gray-200">
             <div class="flex justify-end gap-4">
               <a (click)="edit(game.id)" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                <svg class="w-6 h-6 text-gray-800 dark:text-nord10" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
                 </svg>
               </a>
-              <a (click)="delete(game.id)" class="mr-0 md:mr-4  cursor-pointer"><svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6 text-red-600 hover:text-red-800" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg></a>
+              <a (click)="delete(game.id)" class="mr-0 md:mr-4  cursor-pointer">
+                <svg class="w-6 h-6 text-gray-800 dark:text-nord11" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                </svg>
+              </a>
             </div>
           </td>
         </tr>

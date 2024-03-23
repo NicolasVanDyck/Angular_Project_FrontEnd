@@ -7,7 +7,7 @@
     <div class="flex justify-end">
       <button
         (click)="add()"
-        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-nord8 to-nord10 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
       >
         <span
           class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
@@ -15,7 +15,6 @@
           Create content
         </span>
       </button>
-
     </div>
   </div>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -45,6 +44,10 @@
         <th
           scope="col" class="px-6 py-3">
           User
+        </th>
+        <th
+          scope="col" class="px-6 py-3">
+          Approved
         </th>
         <th
           scope="col" class="px-6 py-3">
@@ -83,28 +86,29 @@
           {{ content.userName }}
         </td>
         <td class="px-6 py-4">
+          {{ content.isApproved }}
+        </td>
+        <td class="px-6 py-4">
           {{ content.createdAt | date: 'dd/MM/yyyy' }}
         </td>
         <td class="px-6 py-4">
           {{ content.updatedAt | date: 'dd/MM/yyyy' }}
         </td>
 
-        <td class="text-sm font-medium border-b border-gray-200">
+        <td class="text-sm font-medium">
           <div class="flex justify-end gap-4">
             <a (click)="edit(content.id)" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                   viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+              <svg class="w-6 h-6 text-gray-800 dark:text-nord10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
               </svg>
             </a>
             <a (click)="delete(content.id)" class="mr-0 md:mr-4  cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6 text-red-600 hover:text-red-800" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              <svg class="w-6 h-6 text-gray-800 dark:text-nord11" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                   width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
               </svg>
             </a>
           </div>

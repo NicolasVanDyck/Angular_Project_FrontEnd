@@ -1,10 +1,10 @@
-import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { RoleService } from './role.service';
+import { inject } from '@angular/core';
 
-export const adminGuard: CanActivateFn = () => {
+export const writerGuard: CanActivateFn = () => {
   const roleService: RoleService = inject(RoleService);
 
   //RoleService checks permissions
-  return roleService.hasPermission('admin');
+  return roleService.hasPermission('writer');
 };

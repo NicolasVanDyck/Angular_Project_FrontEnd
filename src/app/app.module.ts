@@ -26,6 +26,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
         allowedList: [
           `${environment.api_url}/Content`,
           `${environment.api_url}/Content/*`,
+          `${environment.api_url}/Game`,
+          `${environment.api_url}/Game/*`,
+          `${environment.api_url}/Platform`,
+          `${environment.api_url}/Platform/*`,
+          `${environment.api_url}/Variety`,
+          `${environment.api_url}/Variety/*`,
         ],
       },
     }),
