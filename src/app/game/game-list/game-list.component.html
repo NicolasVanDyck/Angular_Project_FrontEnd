@@ -1,9 +1,9 @@
-<div class="container mx-auto mt-8">
-  <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300" *ngIf="errorMessage">
+<div class="container mx-auto pt-8">
+  <div class="rounded p-4 mb-4 text-lg bg-red-200 text-danger border-2 border-nord11" *ngIf="errorMessage">
     {{ errorMessage }}
   </div>
   <div class="mb-4">
-    <h1 class="text-3xl">Games</h1>
+    <h1 class="text-3xl">Contents</h1>
     <div class="flex justify-end">
       <button
         (click)="add()"
@@ -12,92 +12,77 @@
         <span
           class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
         >
-          Create Game
+          Create
         </span>
       </button>
     </div>
   </div>
-  <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-    <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-      <table class="min-w-full">
-        <thead>
-        <tr>
-          <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            #
-          </th>
-          <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            Name
-          </th>
-          <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            Publisher
-          </th>
-          <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            Platform
-          </th>
-          <th
-            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-            CreatedAt
-          </th>
-          <th class="px-6 py-3 text-xs text-center text-gray-500 border-b border-gray-200 bg-gray-50">
-            &nbsp;
-          </th>
-        </tr>
-        </thead>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th
+          scope="col" class="px-6 py-3">
+          Name
+        </th>
+        <th
+          scope="col" class="px-6 py-3">
+          Publisher
+        </th>
+        <th
+          scope="col" class="px-6 py-3">
+          Platform
+        </th>
+        <th
+          scope="col" class="px-6 py-3">
+          CreatedAt
+        </th>
+        <th
+          scope="col" class="px-6 py-3">
+          &nbsp;
+        </th>
+      </tr>
+      </thead>
 
-        <tbody class="bg-white">
-        <tr *ngFor="let game of games">
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="flex items-center">
-              {{ game.id }}
-            </div>
+      <tbody>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          *ngFor="let game of games">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{ game.name }}
+        </th>
+        <td class="px-6 py-4">
+          {{ game.publisher }}
+        </td>
+        <td class="px-6 py-4">
+          {{ game.platform?.name }}
+        </td>
+        <td class="px-6 py-4">
+          {{ game.createdAt | date: 'dd/MM/yyyy' }}
+        </td>
 
-          </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ game.name }}
-            </div>
-          </td>
+        <td class="text-sm font-medium">
+          <div class="flex justify-end gap-4">
+            <a (click)="edit(game.id)" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
+              <svg class="w-6 h-6 text-gray-800 dark:text-nord10" aria-hidden="true"
+                   xmlns="http://www.w3.org/2000/svg"
+                   width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+              </svg>
+            </a>
+            <a (click)="delete(game.id)" class="mr-0 md:mr-4 cursor-pointer">
+              <svg class="w-6 h-6 text-gray-800 dark:text-nord11" aria-hidden="true"
+                   xmlns="http://www.w3.org/2000/svg"
+                   width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+              </svg>
+            </a>
+          </div>
+        </td>
+      </tr>
 
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ game.publisher }}
-            </div>
-          </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ game.platform?.name }}
-            </div>
-          </td>
-          <td class="px-6 py-4 border-b border-gray-200">
-            <div class="text-sm text-gray-900">{{ game.createdAt | date: 'dd/MM/yyyy' }}
-            </div>
-          </td>
-
-          <td class="text-sm font-medium border-b border-gray-200">
-            <div class="flex justify-end gap-4">
-              <a (click)="edit(game.id)" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
-                <svg class="w-6 h-6 text-gray-800 dark:text-nord10" aria-hidden="true"
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
-                </svg>
-              </a>
-              <a (click)="delete(game.id)" class="mr-0 md:mr-4  cursor-pointer">
-                <svg class="w-6 h-6 text-gray-800 dark:text-nord11" aria-hidden="true"
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                </svg>
-              </a>
-            </div>
-          </td>
-        </tr>
-
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
 </div>

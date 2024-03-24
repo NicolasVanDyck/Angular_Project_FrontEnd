@@ -1,1 +1,6 @@
-<p>review works!</p>
+<div class="max-w-2xl mx-auto py-5 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+  <h2 class="font-BebasNeue text-5xl font-extrabold tracking-tight dark:text-nord9">
+    Reviews
+  </h2>
+  <app-content *ngFor="let content of contents" [content]="content"></app-content>
+</div>

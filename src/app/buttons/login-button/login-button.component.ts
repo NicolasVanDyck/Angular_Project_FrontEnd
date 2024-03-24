@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { CommonModule } from '@angular/common';
 
@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./login-button.component.css'],
 })
 export class LoginButtonComponent {
-  isAuthenticated = signal(false);
   constructor(private auth: AuthService) {}
+
   handleLogin(): void {
     this.auth.loginWithRedirect({
       appState: {

@@ -34,6 +34,7 @@ module.exports = {
       },
       fontFamily: {
         Millenia: ["Millenia", "serif"],
+        BebasNeue: ["Bebas Neue", "sans-serif"],
       },
     },
   },

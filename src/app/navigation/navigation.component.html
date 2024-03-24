@@ -1,11 +1,12 @@
 <nav>
-  <div class="bg-white border-gray-200 dark:bg-gray-700" xmlns="http://www.w3.org/1999/html">
+  <div class="bg-nord6 border-gray-200 dark:bg-nord0" xmlns="http://www.w3.org/1999/html">
     <div
       class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
     >
       <a
         class="flex items-center space-x-3 rtl:space-x-reverse"
-        href="#"
+        routerLink="/"
+        routerLinkActive="active"
       >
         <span
           class="font-Millenia self-center text-3xl font-semibold whitespace-nowrap dark:text-nord7"
@@ -27,7 +28,7 @@
 
     </div>
   </div>
-  <div class="bg-gray-50 dark:bg-gray-700">
+  <div class="bg-nord6 dark:bg-gray-700">
     <div class="max-w-screen-xl px-4 py-3 mx-auto">
       <div class="flex items-center">
         <ul
@@ -43,26 +44,30 @@
             >Home</a
             >
           </li>
-          <li>
-            <a
-              [routerLinkActiveOptions]="{ exact: true }"
-              aria-current="page"
-              class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
-              routerLink="/reviews"
-              routerLinkActive="active"
-            >Reviews</a
-            >
-          </li>
-          <li>
-            <a
-              [routerLinkActiveOptions]="{ exact: true }"
-              aria-current="page"
-              class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
-              routerLink="/walkthroughs"
-              routerLinkActive="active"
-            >Walkthroughs</a
-            >
-          </li>
+          <div *ngIf="isAuthenticated()">
+            <li>
+              <a
+                [routerLinkActiveOptions]="{ exact: true }"
+                aria-current="page"
+                class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
+                routerLink="/reviews"
+                routerLinkActive="active"
+              >Reviews</a
+              >
+            </li>
+          </div>
+          <div *ngIf="isAuthenticated()">
+            <li>
+              <a
+                [routerLinkActiveOptions]="{ exact: true }"
+                aria-current="page"
+                class="text-gray-900 dark:text-nord6 dark:hover:text-nord9"
+                routerLink="/walkthroughs"
+                routerLinkActive="active"
+              >Walkthroughs</a
+              >
+            </li>
+          </div>
           <div *ngIf="isWriter()">
             <li>
               <a
