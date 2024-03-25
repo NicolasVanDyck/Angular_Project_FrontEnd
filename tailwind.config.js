@@ -34,7 +34,8 @@ module.exports = {
       },
       fontFamily: {
         Millenia: ["Millenia", "serif"],
-        BebasNeue: ["Bebas Neue", "sans-serif"],
+        RobotoSlab: ["Roboto Slab", "serif"],
+        Mulish: ["Mulish", "sans-serif"],
       },
     },
   },

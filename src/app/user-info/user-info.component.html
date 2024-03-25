@@ -1,5 +1,3 @@
-<div *ngIf="user$ | async as user">
-    <h2>Welcome</h2>
-    <p>{{ user.nickname }}</p>
-    <!-- Add more fields as necessary -->
+<div class="font-RobotoSlab text-xl text-nord1 dark:text-nord6 items-center" *ngIf="user$ | async as user">
+  <p>{{ user.nickname }}</p>
 </div>

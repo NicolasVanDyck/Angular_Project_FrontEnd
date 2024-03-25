@@ -1,7 +1,7 @@
 <nav>
   <div class="bg-nord6 border-gray-200 dark:bg-nord0" xmlns="http://www.w3.org/1999/html">
     <div
-      class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
+      class="flex flex-wrap justify-between items-center p-4"
     >
       <a
         class="flex items-center space-x-3 rtl:space-x-reverse"
@@ -13,7 +13,7 @@
         >Loopers Nest</span
         >
       </a>
-      <div class="flex border-nord11 border-2">
+      <div class="flex">
         <div class="flex space-x-3 justify-between" *ngIf="isAuthenticated(); else LoggedOut">
           <app-user-info></app-user-info>
           <app-logout-button></app-logout-button>
@@ -29,8 +29,8 @@
     </div>
   </div>
   <div class="bg-nord6 dark:bg-gray-700">
-    <div class="max-w-screen-xl px-4 py-3 mx-auto">
-      <div class="flex items-center">
+    <div class=" px-4 py-3 mx-auto">
+      <div class="flex items-center justify-between">
         <ul
           class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm"
         >
@@ -85,10 +85,8 @@
               <app-admin-dropdown></app-admin-dropdown>
             </li>
           </div>
-          <li>
-            <app-light-dark></app-light-dark>
-          </li>
         </ul>
+        <app-light-dark></app-light-dark>
       </div>
     </div>
   </div>

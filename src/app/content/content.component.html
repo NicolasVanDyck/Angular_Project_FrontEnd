@@ -1,7 +1,7 @@
 <article *ngIf="content">
-  <div class="mt-6 space-y-12 font-serif">
+  <div class="mt-6 space-y-12 font-Mulish">
     <div class="relative">
-      <p class="mt-6 block text-2xl font-semibold text-gray-900 dark:text-nord7">
+      <p class="mt-6 block text-2xl font-bold text-gray-900 dark:text-nord7">
         <span class="absolute inset-0"></span>
         {{ content.game?.name }}
       </p>
@@ -14,20 +14,13 @@
         {{ content.body }}
       </p>
       <div class="mt-6 flex items-center">
-        <div class="flex-shrink-0">
-          <a href="#">
-            <span class="sr-only">{{ content.userName }}</span>
-          </a>
-        </div>
         <div class="ml-3">
           <p class="text-sm font-medium text-gray-900">
-            <a href="#">
-              {{ content.userName }}
-            </a>
+            Created by: {{ content.userName }}
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">
             <time datetime="2022-03-16">
-              {{ content.createdAt | date: 'dd/MM/yyyy' }}
+              Last edit on: {{ content.updatedAt | date: 'dd/MM/yyyy' }}
             </time>
             <span aria-hidden="true">
                 &middot;

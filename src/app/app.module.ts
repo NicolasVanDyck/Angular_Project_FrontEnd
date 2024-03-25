@@ -24,6 +24,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
       },
       httpInterceptor: {
         allowedList: [
+          // Allow requests to the following endpoints
+          // Remove /Content if you want visitors to be able to see content without logging in
+          // Keep in mind that this will allow anyone to have access to all CRUD operations for Content
           `${environment.api_url}/Content`,
           `${environment.api_url}/Content/*`,
           `${environment.api_url}/Game`,

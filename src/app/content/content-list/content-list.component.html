@@ -3,7 +3,7 @@
     {{ errorMessage }}
   </div>
   <div class="mb-4">
-    <h1 class="text-3xl">Contents</h1>
+    <h1 class="font-RobotoSlab text-5xl">Contents</h1>
     <div class="flex justify-end">
       <button
         (click)="add()"
@@ -67,23 +67,23 @@
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           *ngFor="let content of contents">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          {{ content.title }}
+          {{ content.title | shortenContent }}
         </th>
-        <td class="px-6 py-4">
-          {{ content.body }}
+        <td class="px-6 py-4 whitespace-nowrap">
+          {{ content.body | shortenContent }}
         </td>
 
         <td class="px-6 py-4">
           {{ content.score }}/10
         </td>
-        <td class="px-6 py-4">
-          {{ content.game?.name }}
+        <td class="px-6 py-4 whitespace-nowrap">
+          {{ content.game?.name | shortenContent }}
         </td>
         <td class="px-6 py-4">
-          {{ content.variety?.name }}
+          {{ content.variety?.name | shortenContent }}
         </td>
-        <td class="px-6 py-4">
-          {{ content.userName }}
+        <td class="px-6 py-4 whitespace-nowrap">
+          {{ content.userName | shortenContent }}
         </td>
         <td class="px-6 py-4">
           <div *ngIf="content.isApproved">
