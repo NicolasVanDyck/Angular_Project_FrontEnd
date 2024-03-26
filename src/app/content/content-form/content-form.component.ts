@@ -11,12 +11,13 @@ import { Variety } from '../../interfaces/variety';
 import { AuthService } from '@auth0/auth0-angular';
 import { VarietyService } from '../../variety.service';
 import { RoleService } from '../../role.service';
+import { ShortenContentPipe } from '../../shorten-content.pipe';
 
 @Component({
   selector: 'app-content-form',
   templateUrl: './content-form.component.html',
   styleUrls: ['./content-form.component.css'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ShortenContentPipe],
   standalone: true,
 })
 export class ContentFormComponent implements OnInit, OnDestroy {

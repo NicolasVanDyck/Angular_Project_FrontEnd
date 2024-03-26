@@ -1,18 +1,19 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
-import {Game} from "../../interfaces/game";
-import {GameService} from "../../game.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Game } from '../../interfaces/game';
+import { GameService } from '../../game.service';
+import { ShortenContentPipe } from '../../shorten-content.pipe';
 
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, ShortenContentPipe],
   standalone: true,
 })
-export class GameListComponent implements OnInit, OnDestroy{
+export class GameListComponent implements OnInit, OnDestroy {
   games: Game[] = [];
   games$: Subscription = new Subscription();
   deleteGame$: Subscription = new Subscription();
@@ -53,8 +54,8 @@ export class GameListComponent implements OnInit, OnDestroy{
   }
 
   getGames() {
-    this.games$ = this.gameService.getGames().subscribe(result =>
-      this.games = result);
+    this.games$ = this.gameService
+      .getGames()
+      .subscribe((result) => (this.games = result));
   }
-
 }

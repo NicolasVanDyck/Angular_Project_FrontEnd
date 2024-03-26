@@ -1,5 +1,5 @@
 <div class="mt-6 space-y-12 font-Mulish">
-  <div class="max-w-2xl mx-auto py-5 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+  <div class="max-w-2xl mx-auto py-5 px-4 sm:px-6">
     <h2 *ngIf="isAdd" class="font-RobotoSlab text-5xl font-extrabold tracking-tight dark:text-nord9">
       Create Content
     </h2>
@@ -11,35 +11,35 @@
       {{ errorMessage }}
     </div>
     <form class="pt-8" (ngSubmit)="onSubmit()" #contentForm="ngForm">
-      <div class="grid gap-3 mb-3 md:grid-cols-2">
-        <div>
-          <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-          <input type="text" id="title" name="title"
-                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                 placeholder="Give your content a title" required [(ngModel)]="content.title" #title="ngModel">
-          <div [hidden]="title.valid || title.pristine" class="text-danger mt-2">Title is required</div>
-        </div>
-        <div class="mb-3">
-          <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
-          <textarea type="body" id="body" name="body"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Write your content here." required [(ngModel)]="content.body"
-                    #body="ngModel"></textarea>
-          <div [hidden]="body.valid || body.pristine" class="text-danger mt-2">Body is required</div>
-        </div>
+      <div class="mb-3">
+        <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+        <input type="text" id="title" name="title"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Give your content a title" required [(ngModel)]="content.title" #title="ngModel">
+        <div [hidden]="title.valid || title.pristine" class="text-danger mt-2">Title is required</div>
+      </div>
+      <div class="mb-3 h-[200px]">
+        <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
+        <textarea type="body" id="body" name="body"
+                  class="block p-2.5 w-full h-3/4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Write your content here." required [(ngModel)]="content.body"
+                  #body="ngModel"></textarea>
+        <div [hidden]="body.valid || body.pristine" class="text-danger mt-2">Body is required</div>
+      </div>
+      <div class="sm:flex gap-2 justify-between">
         <div class="mb-3">
           <label for="game" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Game</label>
           <select id="game" name="game"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   [(ngModel)]="content.gameId">
             <option [ngValue]="0" disabled selected>Choose a game</option>
-            <option *ngFor="let game of games" [ngValue]="game.id">{{ game.name }}</option>
+            <option *ngFor="let game of games" [ngValue]="game.id">{{ game.name | shortenContent : 20 }}</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="variety" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Variety</label>
           <select id="variety" name="variety"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   [(ngModel)]="content.varietyId">
             <option [ngValue]="0" disabled selected>Choose a variety</option>
             <option *ngFor="let variety of varieties" [ngValue]="variety.id">{{ variety.name }}</option>
@@ -51,46 +51,46 @@
                  class="w-20 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                  placeholder="Score" required [(ngModel)]="content.score" #score="ngModel">
         </div>
-        <div [hidden]="score.valid || score.pristine" class="text-danger mt-2">Score is required and needs to be between
-          0
-          and 10
-        </div>
-        <div *ngIf="isAdmin()" class="mb-3">
-          <label for="isApproved" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Approved</label>
-          <input type="checkbox" id="isApproved" name="isApproved"
-                 class="w-4 h-4 text-nord10 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-nord10 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-nord0"
-                 [(ngModel)]="content.isApproved">
-        </div>
-        <div class="m-0 gap-0">
-          <input type="hidden" id="isApprovedDefault" name="isApprovedDefault"
-                 [(ngModel)]="content.isApproved">
-        </div>
-        <div class="m-0 gap-0">
-          <input type="hidden" id="userName" name="userName"
-                 placeholder="userName" required [(ngModel)]="content.userName">
-        </div>
-        <div class="m-0 gap-0">
-          <input type="hidden" id="createdAt" name="createdAt"
-                 placeholder="createdAt" [(ngModel)]="content.createdAt">
-        </div>
+      </div>
+      <div [hidden]="score.valid || score.pristine" class="text-danger mt-2">Score is required and needs to be between
+        0
+        and 10
+      </div>
+      <div *ngIf="isAdmin()" class="mb-6">
+        <label for="isApproved" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Approved</label>
+        <input type="checkbox" id="isApproved" name="isApproved"
+               class="w-8 h-8 text-nord10 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-nord10 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-nord0"
+               [(ngModel)]="content.isApproved">
+      </div>
+      <div class="m-0 gap-0">
+        <input type="hidden" id="isApprovedDefault" name="isApprovedDefault"
+               [(ngModel)]="content.isApproved">
+      </div>
+      <div class="m-0 gap-0">
+        <input type="hidden" id="userName" name="userName"
+               placeholder="userName" required [(ngModel)]="content.userName">
+      </div>
+      <div class="m-0 gap-0">
+        <input type="hidden" id="createdAt" name="createdAt"
+               placeholder="createdAt" [(ngModel)]="content.createdAt">
+      </div>
 
-        <button type="submit" *ngIf="isAdd" [disabled]="!contentForm.form.valid || isSubmitted"
-                class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-nord8 to-nord10 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+      <button type="submit" *ngIf="isAdd" [disabled]="!contentForm.form.valid || isSubmitted"
+              class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-nord8 to-nord10 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
           <span
             class="px-5 py-2.5"
           >
             Add
           </span>
-        </button>
-        <button type="submit" *ngIf="isEdit" [disabled]="!contentForm.form.valid || isSubmitted"
-                class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-nord8 to-nord10 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+      </button>
+      <button type="submit" *ngIf="isEdit" [disabled]="!contentForm.form.valid || isSubmitted"
+              class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-nord8 to-nord10 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
           <span
             class="px-5 py-2.5"
           >
             Save
           </span>
-        </button>
-      </div>
+      </button>
     </form>
   </div>
 </div>
