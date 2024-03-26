@@ -5,7 +5,7 @@ export interface Content {
   id: number;
   title: string;
   body: string;
-  score: number;
+  score: number | null;
   gameId: number;
   game?: Game;
   varietyId: number;

@@ -22,12 +22,14 @@
             <time datetime="2022-03-16">
               Last edit on: {{ content.updatedAt | date: 'dd/MM/yyyy' }}
             </time>
-            <span aria-hidden="true">
+            <div *ngIf="content.score">
+                          <span aria-hidden="true">
                 &middot;
               </span>
-            <span>
+              <span>
                 {{ content.score }}/10
               </span>
+            </div>
           </div>
         </div>
       </div>

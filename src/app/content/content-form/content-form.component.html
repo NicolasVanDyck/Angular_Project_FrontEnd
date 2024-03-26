@@ -45,16 +45,17 @@
             <option *ngFor="let variety of varieties" [ngValue]="variety.id">{{ variety.name }}</option>
           </select>
         </div>
-        <div class="mb-3">
+        <div *ngIf="content.varietyId == 1" class="mb-3">
           <label for="score" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Score</label>
           <input type="number" max="10" min="0" id="score" name="score"
                  class="w-20 h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                  placeholder="Score" required [(ngModel)]="content.score" #score="ngModel">
+          <div [hidden]="score.valid || score.pristine" class="text-danger mt-2">Score is required and needs to be
+            between
+            0
+            and 10
+          </div>
         </div>
-      </div>
-      <div [hidden]="score.valid || score.pristine" class="text-danger mt-2">Score is required and needs to be between
-        0
-        and 10
       </div>
       <div *ngIf="isAdmin()" class="mb-6">
         <label for="isApproved" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Approved</label>
