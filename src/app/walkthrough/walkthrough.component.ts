@@ -3,11 +3,18 @@ import { CommonModule } from '@angular/common';
 import { Content } from '../interfaces/content';
 import { ContentService } from '../content.service';
 import { ContentComponent } from '../content/content.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ShortenContentPipe } from '../shorten-content.pipe';
 
 @Component({
   selector: 'app-walkthrough',
   standalone: true,
-  imports: [CommonModule, ContentComponent],
+  imports: [
+    CommonModule,
+    ContentComponent,
+    ReactiveFormsModule,
+    ShortenContentPipe,
+  ],
   templateUrl: './walkthrough.component.html',
   styleUrls: ['./walkthrough.component.css'],
 })

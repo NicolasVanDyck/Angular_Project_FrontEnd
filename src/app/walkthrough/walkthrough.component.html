@@ -2,5 +2,7 @@
   <h2 class="font-RobotoSlab text-5xl font-extrabold tracking-tight dark:text-nord9">
     Walkthroughs
   </h2>
-  <app-content *ngFor="let content of contents" [content]="content"></app-content>
+  <div class="mb-3">
+    <app-content *ngFor="let content of contents" [content]="content"></app-content>
+  </div>
 </div>
