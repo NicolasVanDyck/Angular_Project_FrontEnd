@@ -1,20 +1,32 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
-import {Platform} from "../../interfaces/platform";
-import {PlatformService} from "../../platform.service";
-import {CapitalLetter} from "../../validators/capital-letter";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Platform } from '../../interfaces/platform';
+import { PlatformService } from '../../platform.service';
+import { CapitalLetter } from '../../validators/capital-letter';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-platform-form',
   templateUrl: './platform-form.component.html',
   styleUrls: ['./platform-form.component.css'],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BackButtonComponent,
+  ],
   standalone: true,
 })
-export class PlatformFormComponent implements OnInit, OnDestroy{
+export class PlatformFormComponent implements OnInit, OnDestroy {
   isAdd: boolean = false;
   isEdit: boolean = false;
   platformId: number = 0;
@@ -67,8 +79,7 @@ export class PlatformFormComponent implements OnInit, OnDestroy{
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.platform$.unsubscribe();
@@ -97,5 +108,4 @@ export class PlatformFormComponent implements OnInit, OnDestroy{
         });
     }
   }
-
 }

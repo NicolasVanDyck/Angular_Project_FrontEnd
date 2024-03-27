@@ -1,0 +1,17 @@
+/* initialize variable for color */
+:root {
+  --main-color: #bf616a;
+}
+
+#pacman {
+  width: 0px;
+  height: 0px;
+  border-right: 30px solid transparent;
+  border-top: 30px solid var(--main-color);
+  border-left: 30px solid var(--main-color);
+  border-bottom: 30px solid var(--main-color);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}

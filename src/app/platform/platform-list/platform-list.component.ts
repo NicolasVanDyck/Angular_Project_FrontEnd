@@ -4,12 +4,13 @@ import { Subscription } from 'rxjs';
 import { PlatformService } from '../../platform.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-platform-list',
   templateUrl: './platform-list.component.html',
   styleUrls: ['./platform-list.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, BackButtonComponent],
   standalone: true,
 })
 export class PlatformListComponent implements OnInit, OnDestroy {
@@ -53,7 +54,8 @@ export class PlatformListComponent implements OnInit, OnDestroy {
   }
 
   getPlatforms() {
-    this.platforms$ = this.platformService.getPlatforms().subscribe(result =>
-      this.platforms = result);
+    this.platforms$ = this.platformService
+      .getPlatforms()
+      .subscribe((result) => (this.platforms = result));
   }
 }

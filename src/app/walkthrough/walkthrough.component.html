@@ -1,8 +1,18 @@
-<div class="max-w-2xl mx-auto py-5 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-  <h2 class="font-RobotoSlab text-5xl font-extrabold tracking-tight dark:text-nord9">
-    Walkthroughs
-  </h2>
-  <div class="mb-3">
-    <app-content *ngFor="let content of contents" [content]="content"></app-content>
+<div class="mt-6 space-y-12 font-Mulish">
+  <div class="max-w-2xl mx-auto py-5 px-4 sm:px-6">
+    <h1 class="font-RobotoSlab text-5xl font-extrabold tracking-tight dark:text-nord9">Walkthroughs</h1>
+    <div class="pt-8">
+      <select id="content" name="content"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="contentId" (change)="onContentChange()">
+        <option [ngValue]="0" disabled selected>Choose a game</option>
+        <option *ngFor="let content of contents" [ngValue]="content.id">{{ content.title | shortenContent : 20 }}
+        </option>
+      </select>
+    </div>
+    <app-content *ngIf="content" [content]="content"></app-content>
+    <div class="mt-4">
+      <app-back-button [isHome]="true"></app-back-button>
+    </div>
   </div>
 </div>

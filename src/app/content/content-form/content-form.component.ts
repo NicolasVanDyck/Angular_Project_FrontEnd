@@ -12,12 +12,13 @@ import { AuthService } from '@auth0/auth0-angular';
 import { VarietyService } from '../../variety.service';
 import { RoleService } from '../../role.service';
 import { ShortenContentPipe } from '../../shorten-content.pipe';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-content-form',
   templateUrl: './content-form.component.html',
   styleUrls: ['./content-form.component.css'],
-  imports: [CommonModule, FormsModule, ShortenContentPipe],
+  imports: [CommonModule, FormsModule, ShortenContentPipe, BackButtonComponent],
   standalone: true,
 })
 export class ContentFormComponent implements OnInit, OnDestroy {

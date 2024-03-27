@@ -36,6 +36,7 @@ module.exports = {
         Millenia: ["Millenia", "serif"],
         RobotoSlab: ["Roboto Slab", "serif"],
         Mulish: ["Mulish", "sans-serif"],
+        RoadRage: ["Road Rage", "cursive"],
       },
     },
   },

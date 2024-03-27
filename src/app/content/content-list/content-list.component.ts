@@ -7,12 +7,13 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '@auth0/auth0-angular';
 import { RoleService } from '../../role.service';
 import { ShortenContentPipe } from '../../shorten-content.pipe';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-content-list',
   templateUrl: './content-list.component.html',
   styleUrls: ['./content-list.component.css'],
-  imports: [CommonModule, ShortenContentPipe],
+  imports: [CommonModule, ShortenContentPipe, BackButtonComponent],
   standalone: true,
 })
 export class ContentListComponent implements OnInit, OnDestroy {

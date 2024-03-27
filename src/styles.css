@@ -5,5 +5,10 @@
 
 @font-face {
   font-family: "Millenia";
-  src: url("~src/assets/fonts/MilleniaPersonalUse-w1OB8.ttf");
+  src: url("~src/assets/fonts/MilleniaPersonalUse-w1OB8.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Road Rage";
+  src: url("~src/assets/fonts/Road_Rage.otf") format("opentype");
 }

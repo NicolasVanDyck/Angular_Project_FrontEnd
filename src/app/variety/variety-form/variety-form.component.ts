@@ -1,22 +1,34 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Platform} from "../../interfaces/platform";
-import {Subscription} from "rxjs";
-import {CapitalLetter} from "../../validators/capital-letter";
-import {Router} from "@angular/router";
-import {PlatformService} from "../../platform.service";
-import {Variety} from "../../interfaces/variety";
-import {VarietyService} from "../../variety.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Platform } from '../../interfaces/platform';
+import { Subscription } from 'rxjs';
+import { CapitalLetter } from '../../validators/capital-letter';
+import { Router } from '@angular/router';
+import { PlatformService } from '../../platform.service';
+import { Variety } from '../../interfaces/variety';
+import { VarietyService } from '../../variety.service';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-variety-form',
   templateUrl: './variety-form.component.html',
   styleUrls: ['./variety-form.component.css'],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BackButtonComponent,
+  ],
   standalone: true,
 })
-export class VarietyFormComponent implements OnInit, OnDestroy{
+export class VarietyFormComponent implements OnInit, OnDestroy {
   isAdd: boolean = false;
   isEdit: boolean = false;
   varietyId: number = 0;
@@ -69,8 +81,7 @@ export class VarietyFormComponent implements OnInit, OnDestroy{
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.variety$.unsubscribe();
@@ -99,5 +110,4 @@ export class VarietyFormComponent implements OnInit, OnDestroy{
         });
     }
   }
-
 }

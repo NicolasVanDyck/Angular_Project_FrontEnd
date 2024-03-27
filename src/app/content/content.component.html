@@ -1,18 +1,35 @@
 <article *ngIf="content">
   <div class="mt-6 space-y-12 font-Mulish">
-    <p class="mt-6 block text-2xl font-bold text-gray-900 dark:text-nord7">
+    <p class="mt-6 block text-4xl font-bold text-gray-900 dark:text-nord7">
       {{ content.game?.name }}
     </p>
     <div>
-      <h3 class="text-xl font-semibold text-gray-900">
-        {{ content.title }}
-      </h3>
-      <p class="mt-3 text-base text-gray-500">
+      <div class="flex justify-between">
+        <h3 class="text-2xl font-semibold text-gray-900 dark:text-nord15">
+          {{ content.title }}
+        </h3>
+        <div>
+          <div *ngIf="content.score != null && content.score < 5" class="flex items-center">
+            <div id="pacman" style="--main-color: #bf616a"></div>
+            <div class="font-RoadRage text-5xl text-danger">{{ content.score }}/10</div>
+          </div>
+          <div *ngIf="content.score != null && content.score <= 7 && content.score >= 5 " class="flex items-center">
+            <div id="pacman"
+                 style="--main-color: #ebcb8b"></div>
+            <div class="font-RoadRage text-5xl text-nord13">{{ content.score }}/10</div>
+          </div>
+          <div *ngIf="content.score != null && content.score > 7" class="flex items-center">
+            <div id="pacman" style="--main-color: #a3be8c"></div>
+            <div class="font-RoadRage text-5xl text-success">{{ content.score }}/10</div>
+          </div>
+        </div>
+      </div>
+      <p class="mt-3 text-base text-gray-500 dark:text-nord6">
         {{ content.body }}
       </p>
       <div class="mt-6 flex items-center">
         <div class="ml-3">
-          <p class="text-sm font-medium text-gray-900">
+          <p class="text-sm font-medium text-nord0 dark:text-nord9">
             Created by: {{ content.userName }}
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">

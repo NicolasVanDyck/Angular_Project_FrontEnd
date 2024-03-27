@@ -1,21 +1,21 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
-import {Game} from "../../interfaces/game";
-import {GameService} from "../../game.service";
-import {PlatformService} from "../../platform.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Game } from '../../interfaces/game';
+import { GameService } from '../../game.service';
+import { PlatformService } from '../../platform.service';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-game-form',
   templateUrl: './game-form.component.html',
   styleUrls: ['./game-form.component.css'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, BackButtonComponent],
   standalone: true,
 })
 export class GameFormComponent implements OnInit, OnDestroy {
-
   isAdd: boolean = false;
   isEdit: boolean = false;
   gameId: number = 0;
@@ -37,6 +37,7 @@ export class GameFormComponent implements OnInit, OnDestroy {
 
   platforms: any[] = [];
   platforms$: Subscription = new Subscription();
+
   constructor(
     private router: Router,
     private gameService: GameService,
@@ -74,13 +75,11 @@ export class GameFormComponent implements OnInit, OnDestroy {
     this.isSubmitted = true;
     if (this.isAdd) {
       this.game.createdAt = new Date(); // Set the createdAt field to the current date and time
-      this.postGame$ = this.gameService
-        .postGame(this.game)
-        .subscribe({
-          // next is the success callback, error is the error callback
-          next: (v) => this.router.navigateByUrl('/admin/game'),
-          error: (e) => (this.errorMessage = e.message),
-        });
+      this.postGame$ = this.gameService.postGame(this.game).subscribe({
+        // next is the success callback, error is the error callback
+        next: (v) => this.router.navigateByUrl('/admin/game'),
+        error: (e) => (this.errorMessage = e.message),
+      });
     }
     if (this.isEdit) {
       this.putGame$ = this.gameService
@@ -91,8 +90,10 @@ export class GameFormComponent implements OnInit, OnDestroy {
         });
     }
   }
+
   getPlatforms() {
-    this.platforms$ = this.platformService.getPlatforms().subscribe(result =>
-      this.platforms = result);
+    this.platforms$ = this.platformService
+      .getPlatforms()
+      .subscribe((result) => (this.platforms = result));
   }
 }

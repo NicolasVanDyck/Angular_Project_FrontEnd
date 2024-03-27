@@ -1,15 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
-import {Variety} from "../../interfaces/variety";
-import {VarietyService} from "../../variety.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Variety } from '../../interfaces/variety';
+import { VarietyService } from '../../variety.service';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-variety-list',
   templateUrl: './variety-list.component.html',
   styleUrls: ['./variety-list.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, BackButtonComponent],
   standalone: true,
 })
 export class VarietyListComponent implements OnInit, OnDestroy {
@@ -53,7 +54,8 @@ export class VarietyListComponent implements OnInit, OnDestroy {
   }
 
   getVarieties() {
-    this.varieties$ = this.varietyService.getVarieties().subscribe(result =>
-      this.varieties = result);
+    this.varieties$ = this.varietyService
+      .getVarieties()
+      .subscribe((result) => (this.varieties = result));
   }
 }

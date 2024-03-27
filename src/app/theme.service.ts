@@ -6,7 +6,7 @@ import { signal } from '@angular/core';
 })
 export class ThemeService {
   darkMode = signal<boolean>(
-    JSON.parse(window.localStorage.getItem('darkMode') ?? 'false'),
+    JSON.parse(window.localStorage.getItem('darkMode') ?? 'true'),
   );
 
   constructor() {

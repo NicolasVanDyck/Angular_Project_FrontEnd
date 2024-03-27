@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { Game } from '../../interfaces/game';
 import { GameService } from '../../game.service';
 import { ShortenContentPipe } from '../../shorten-content.pipe';
+import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css'],
-  imports: [CommonModule, ShortenContentPipe],
+  imports: [CommonModule, ShortenContentPipe, BackButtonComponent],
   standalone: true,
 })
 export class GameListComponent implements OnInit, OnDestroy {

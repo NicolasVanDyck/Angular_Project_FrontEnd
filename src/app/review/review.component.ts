@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Content } from '../interfaces/content';
 import { ContentService } from '../content.service';
 import { ContentComponent } from '../content/content.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShortenContentPipe } from '../shorten-content.pipe';
+import { RouterModule } from '@angular/router';
+import { BackButtonComponent } from '../buttons/back-button/back-button.component';
 
 @Component({
   selector: 'app-review',
@@ -15,6 +17,7 @@ import { ShortenContentPipe } from '../shorten-content.pipe';
     ReactiveFormsModule,
     ShortenContentPipe,
     FormsModule,
+    BackButtonComponent,
   ],
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.css'],
